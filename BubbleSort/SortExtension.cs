@@ -6,13 +6,24 @@
         {
             for (int step = 0; step < list.Count; step++)
             {
-                for (int sort = 0; sort < list.Count - step - 1; sort++)
-                {
-                    if (list[sort].CompareTo(list[sort + 1]) > 0)
-                    {
-                        (list[sort], list[sort + 1]) = (list[sort + 1], list[sort]);
-                    }
-                }
+                var orderPairsCount = list.Count - step - 1;
+                list.OrderOpeningPairs(orderPairsCount);
+            }
+        }
+
+        private static void OrderOpeningPairs<T>(this List<T> list, int amount) where T : IComparable
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                OrderWithSubsequent(list, i);
+            }
+        }
+
+        private static void OrderWithSubsequent<T>(List<T> list, int index) where T : IComparable
+        {
+            if (list[index].CompareTo(list[index + 1]) > 0)
+            {
+                (list[index], list[index + 1]) = (list[index + 1], list[index]);
             }
         }
     }
