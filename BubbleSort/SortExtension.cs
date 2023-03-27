@@ -1,6 +1,4 @@
-﻿using System.Runtime.Intrinsics.X86;
-
-namespace BubbleSort
+﻿namespace BubbleSort
 {
     public static class SortExtension
     {
